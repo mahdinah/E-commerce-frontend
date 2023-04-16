@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 import Layout from "./../components/Layout/Layout";
 import { AiOutlineReload } from "react-icons/ai";
 import "../styles/Homepage.css";
+import DropdownItem from "react-bootstrap/esm/DropdownItem";
+
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -107,21 +109,14 @@ const HomePage = () => {
     }
   };
   return (
-    <Layout title={"ALl Products - Best offers "}>
-      {/* banner image */}
-      <img
-        src="/images/banner.png"
-        className="banner-img"
-        alt="bannerimage"
-        width={"100%"}
-      />
-      {/* banner image */}
-      <div className="container-fluid row mt-3 home-page">
-        <div className="col-md-3 filters">
+    <Layout title={"Avon"}>
+      <div className="avonhome-page">
+        <div className="pricecatfilter">
           <h4 className="text-center">Filter By Category</h4>
-          <div className="d-flex flex-column">
+
+          <div className="catfilter">
             {categories?.map((c) => (
-              <Checkbox
+              <Checkbox className="checkbo"
                 key={c._id}
                 onChange={(e) => handleFilter(e.target.checked, c._id)}
               >
@@ -129,29 +124,33 @@ const HomePage = () => {
               </Checkbox>
             ))}
           </div>
+        
           {/* price filter */}
           <h4 className="text-center mt-4">Filter By Price</h4>
-          <div className="d-flex flex-column">
+          <div className="pricefilter">
             <Radio.Group onChange={(e) => setRadio(e.target.value)}>
               {Prices?.map((p) => (
-                <div key={p._id}>
+                <div className="radiobtn" key={p._id}>
                   <Radio value={p.array}>{p.name}</Radio>
                 </div>
               ))}
             </Radio.Group>
           </div>
-          <div className="d-flex flex-column">
+          <div className="resetfilter">
             <button
-              className="btn btn-danger"
+              className="btndanger"
               onClick={() => window.location.reload()}
             >
               RESET FILTERS
             </button>
           </div>
         </div>
-        <div className="col-md-9 ">
-          <h1 className="text-center">All Products</h1>
-          <div className="d-flex flex-wrap">
+        {/* <div>
+          <h5 className="text-center1">OUR PRODUCTS</h5>
+          <h2 className="text-center1">Featured Products</h2>
+        </div> */}
+        <div className="productitem">
+          <div className="rowcolitem">
             {products?.map((p) => (
               <div className="card m-2" key={p._id}>
                 <img
@@ -160,6 +159,7 @@ const HomePage = () => {
                   alt={p.name}
                 />
                 <div className="card-body">
+             
                   <div className="card-name-price">
                     <h5 className="card-title">{p.name}</h5>
                     <h5 className="card-title card-price">
@@ -169,18 +169,18 @@ const HomePage = () => {
                       })}
                     </h5>
                   </div>
-                  <p className="card-text ">
-                    {p.description.substring(0, 60)}...
+                  <p className="card-text">
+                    {p.description.substring(0, 60)}
                   </p>
                   <div className="card-name-price">
                     <button
-                      className="btn btn-info ms-1"
+                      className="btncard"
                       onClick={() => navigate(`/product/${p.slug}`)}
                     >
                       More Details
                     </button>
                     <button
-                      className="btn btn-dark ms-1"
+                      className="addbtncard"
                       onClick={() => {
                         setCart([...cart, p]);
                         localStorage.setItem(
@@ -197,10 +197,13 @@ const HomePage = () => {
               </div>
             ))}
           </div>
-          <div className="m-2 p-3">
+
+        </div>
+
+        <div className="loadmorediv">
             {products && products.length < total && (
               <button
-                className="btn loadmore"
+                className="loadmore"
                 onClick={(e) => {
                   e.preventDefault();
                   setPage(page + 1);
@@ -211,13 +214,14 @@ const HomePage = () => {
                 ) : (
                   <>
                     {" "}
-                    Loadmore <AiOutlineReload />
+                    All Products
+                   
                   </>
                 )}
               </button>
             )}
           </div>
-        </div>
+
       </div>
     </Layout>
   );
