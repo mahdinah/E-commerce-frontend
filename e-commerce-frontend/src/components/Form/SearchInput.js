@@ -14,6 +14,7 @@ const SearchInput = () => {
       );
       setValues({ ...values, results: data });
       navigate("/search");
+        
     } catch (error) {
       console.log(error);
     }
@@ -30,7 +31,7 @@ const SearchInput = () => {
         <input
           className="form-control me-2"
           type="search"
-          placeholder="Search"
+          placeholder="Search for items"
           aria-label="Search"
           value={values.keyword}
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}

@@ -1,47 +1,151 @@
-import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import * as React from "react";
+import ReactModal from "react-modal";
+import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
 import SearchInput from "../Form/SearchInput";
 import useCategory from "../../hooks/useCategory";
 import { useCart } from "../../context/cart";
 import { Badge } from "antd";
-import { Dropdown } from 'react-bootstrap';
 import { useState } from "react";
-import { Modal } from 'react-bootstrap';
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import axios from "axios";
 
-
+//header all elements
 const Header = () => {
-  const [showRegister, setShowRegister] = useState(false);
+  //******************************   register form  ******************************
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [answer, setAnswer] = useState("");
+  const navigate = useNavigate();
+  const navigateo = useNavigate();
+  const locationo = useLocation();
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorElo, setAnchorElo] = React.useState(null);
+  
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+  
+    const openo = Boolean(anchorElo);
+    const handleClicko = (event) => {
+      setAnchorElo(event.currentTarget);
+    };
+    const handleCloseo = () => {
+      setAnchorElo(null);
+    };
+  
+    const [isOpen, setIsOpen] = useState(false);
+  
+    const [auth, setAuth] = useAuth();
+    const [cart] = useCart();
+    const categories = useCategory();
+    const handleLogout = () => {
+      setAuth({
+        ...auth,
+        user: null,
+        token: "",
+      });
+      localStorage.removeItem("auth");
+      toast.success("Logout Successfully");
+    };
+      //******************************   form info done here  ******************************
 
-  const [auth, setAuth] = useAuth();
-  const [cart] = useCart();
-  const categories = useCategory();
-  const handleLogout = () => {
-    setAuth({
-      ...auth,
-      user: null,
-      token: "",
+ // form function login
+ const handleSubmito = async (e) => {
+  e.preventDefault();
+  try {
+    const reso = await axios.post("http://localhost:8080/api/v1/auth/login", {
+      email,
+      password,
     });
-    localStorage.removeItem("auth");
-    toast.success("Logout Successfully");
+    if (reso && reso.data.success) {
+      toast.success(reso.data && reso.data.message);
+      setAuth({
+        ...auth,
+        user: reso.data.user,
+        token: reso.data.token,
+      });
+      localStorage.setItem("auth", JSON.stringify(reso.data));
+      navigateo(locationo.state || "/" );
+      setIsOpen(false)
+    } else {
+      toast.error(reso.data.message);
+    }
+  } catch (error) {
+    console.log(error);
+    toast.error("Something went wrong");
+  }
+};
+
+//******************************   login  ******************************
+
+
+  // form function register
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        "http://localhost:8080/api/v1/auth/register",
+        {
+          name,
+          email,
+          password,
+          phone,
+          address,
+          answer,
+        }
+      );
+      if (res && res.data.success) {
+        toast.success(res.data && res.data.message);
+  
+        // Automatically login the user after registration
+        const reso = await axios.post("http://localhost:8080/api/v1/auth/login", {
+          email,
+          password,
+        });
+        if (reso && reso.data.success) {
+          setAuth({
+            ...auth,
+            user: reso.data.user,
+            token: reso.data.token,
+          });
+          localStorage.setItem("auth", JSON.stringify(reso.data));
+          navigate(locationo.state || "/");
+          setIsOpen(false);
+        } else {
+          toast.error(reso.data.message);
+        }
+  
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
   };
+  
+
+//******************************   register  ******************************
+
+
+
+ 
+
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div className="container-fluid">
-          {/* <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarTogglerDemo01"
-            aria-controls="navbarTogglerDemo01"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon" />
-          </button> */}
-
           <div className="navinfo">
             <ul className="socialicos">
               <li>
@@ -98,23 +202,154 @@ const Header = () => {
               <div className="searchinputo">
                 <SearchInput />
               </div>
-
-              <li>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="25"
-                  height="25"
-                  fill="currentColor"
-                  class="bi bi-person-circle"
-                  viewBox="0 0 16 16"
+              <div className="loginlogout">
+                {/* {popup ?  */}
+                <ReactModal
+                  className="jacs"
+                  isOpen={isOpen}
+                  contentLabel="Example Modal"
+                  onRequestClose={() => setIsOpen(false)}
                 >
-                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                  <path
-                    fill-rule="evenodd"
-                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
-                  />
-                </svg>
-              </li>
+                  <div className="maino">
+                    <div className="mainter">
+                      <input
+                        className="inputos"
+                        type="checkbox"
+                        id="chk"
+                        aria-hidden="true"
+                      />
+                      <div className="signupes">
+                        <form onSubmit={handleSubmit}>
+                        
+                            <label
+                              className="labelos"
+                              htmlFor="chk"
+                              aria-hidden="true"
+                            >
+                              Sign up
+                            </label>
+                            <input
+                              className="inputos"
+                              type="text"
+                              value={name}
+                              onChange={(e) => setName(e.target.value)}
+                              id="exampleInputEmail1"
+                              placeholder="Enter Your Name"
+                              required
+                              autoFocus
+                            />
+                            <input
+                              className="inputos"
+                              type="email"
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
+                              id="exampleInputEmail1"
+                              placeholder="Enter Your Email "
+                              required
+                            />
+                            <input
+                              className="inputos"
+                              type="password"
+                              value={password}
+                              onChange={(e) => setPassword(e.target.value)}
+                              id="exampleInputPassword1"
+                              placeholder="Enter Your Password"
+                              required
+                            />
+                            <input
+                              className="inputos"
+                              type="text"
+                              value={phone}
+                              onChange={(e) => setPhone(e.target.value)}
+                              id="exampleInputEmail1"
+                              placeholder="Enter Your Phone"
+                              required
+                            />
+                            <input
+                              className="inputos"
+                              type="text"
+                              value={address}
+                              onChange={(e) => setAddress(e.target.value)}
+                              id="exampleInputEmail1"
+                              placeholder="Enter Your Address"
+                              required
+                            />
+                            <input
+                              className="inputos"
+                              type="text"
+                              value={answer}
+                              onChange={(e) => setAnswer(e.target.value)}
+                              id="exampleInputEmail1"
+                              placeholder="What is Your Favorite sports"
+                              required
+                            />
+                            <button type="submit" className="signos">
+                              Sign up
+                            </button>
+                        </form>
+                      </div>
+                      <div className="logines">
+                        <form onSubmit={handleSubmito}>
+                          <label
+                            className="labelos"
+                            htmlFor="chk"
+                            aria-hidden="true"
+                          >
+                            Login
+                          </label>
+                          <input
+                            className="inputos"
+                            type="email"
+                            autoFocus
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            id="exampleInputEmail1"
+                            placeholder="Enter Your Email "
+                            required
+                          />
+                          <input
+                            className="inputos"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            id="exampleInputPassword1"
+                            placeholder="Enter Your Password"
+                            required
+                          />
+                          <button
+                            type="button"
+                            className="signos"
+                            onClick={() => {
+                              navigateo("/forgot-password");
+                            }}
+                          >
+                            Forgot Password
+                          </button>
+                          <button type="submit" className="signos">
+                            Login
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </ReactModal>
+                <button className="buttologin" onClick={() => setIsOpen(true)}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="25"
+                    height="25"
+                    fill="currentColor"
+                    className="bi bi-person-circle"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                    <path
+                      fillRule="evenodd"
+                      d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+                    />
+                  </svg>
+                </button>
+              </div>{" "}
               <li>
                 {" "}
                 <NavLink to="/cart" className="nav-link">
@@ -137,6 +372,84 @@ const Header = () => {
                   </Badge>
                 </NavLink>
               </li>
+              <li className="accounto">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="25"
+                  fill="currentColor"
+                  class="bi bi-person"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+                </svg>
+                <NavLink
+                  className="nav-link dropdown-toggleo"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  style={{ border: "none" }}
+                >
+                  Account
+                </NavLink>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  fill="currentColor"
+                  class="bi bi-caret-down-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                </svg>
+                <li className="nav-item dropdown">
+                  <div className="dropdowno">
+                    <Button
+                      id="basic-button"
+                      aria-controls={openo ? "basic-menu" : undefined}
+                      aria-haspopup="true"
+                      aria-expanded={openo ? "true" : undefined}
+                      onClick={handleClicko}
+                    ></Button>
+                    <Menu
+                      id="basic-menu"
+                      anchorEl={anchorEl}
+                      open={openo}
+                      onClose={handleCloseo}
+                      MenuListProps={{
+                        "aria-labelledby": "basic-button",
+                      }}
+                      className="menu-center"
+                    >
+                      <MenuItem className="dropdownacc">
+                        <div className="dropdownacc">
+                          <ul className="dropdown-menu">
+                            <li>
+                              <NavLink
+                                to={`/dashboard/${
+                                  auth?.user?.role === 1 ? "admin" : "user"
+                                }`}
+                                className="dropdown-item"
+                              >
+                                {auth?.user?.name}
+                              </NavLink>
+                            </li>
+                            <li>
+                              <NavLink
+                                onClick={handleLogout}
+                                to="/login"
+                                className="dropdown-item"
+                              >
+                                Logout
+                              </NavLink>
+                            </li>
+                          </ul>
+                        </div>
+                      </MenuItem>
+                    </Menu>
+                  </div>
+                </li>
+              </li>
             </ul>
           </div>
 
@@ -146,7 +459,7 @@ const Header = () => {
                 <div class="logo-holder logo-6">
                   <a href="/">
                     <h3>
-                      LA <span>BELLE</span>
+                      A<span>Von</span>
                     </h3>
                   </a>
                 </div>{" "}
@@ -157,99 +470,110 @@ const Header = () => {
                     Home
                   </NavLink>
                 </li>
+                <li className="nav-item">
+                  <NavLink to="/" className="nav-link ">
+                    NEW{" "}
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/" className="nav-link ">
+                    Perfume
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/" className="nav-link ">
+                    Skincare
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/" className="nav-link ">
+                    Makeup
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/" className="nav-link ">
+                    Bodycare{" "}
+                  </NavLink>
+                </li>
                 <li className="nav-item dropdown">
                   <div className="dropdown">
-                    <button
-                      className="btn btn-secondary dropdown-toggle"
-                      type="button"
-                      id="dropdownMenuButton1"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
+                    <Button
+                      id="basic-button"
+                      aria-controls={open ? "basic-menu" : undefined}
+                      aria-haspopup="true"
+                      aria-expanded={open ? "true" : undefined}
+                      onClick={handleClick}
                     >
-                      Categories
-                    </button>
-                    <ul
-                      className="dropdown-menu"
-                      aria-labelledby="dropdownMenuButton1"
+                      More
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        fill="currentColor"
+                        class="bi bi-chevron-down"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+                        />
+                      </svg>
+                    </Button>
+                    <Menu
+                      id="basic-menu"
+                      anchorEl={anchorEl}
+                      open={open}
+                      onClose={handleClose}
+                      MenuListProps={{
+                        "aria-labelledby": "basic-button",
+                      }}
                     >
-                      <li>
-                        <Link className="dropdown-item" to={"/categories"}>
-                          All Categories
-                        </Link>
-                      </li>
-                      {categories?.map((c) => (
-                        <li key={c._id}>
-                          <Link
-                            className="dropdown-item"
-                            to={`/category/${c.slug}`}
-                          >
-                            {c.name}
+                      <MenuItem>
+                        <li>
+                          <Link className="dropdown-item" to={"/categories"}>
+                            All Categories
                           </Link>
                         </li>
-                      ))}
-                    </ul>
+                      </MenuItem>
+
+                      <MenuItem
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "start",
+                        }}
+                      >
+                        {categories?.map((c) => (
+                          <li key={c._id}>
+                            <Link
+                              className="dropdown-item"
+                              to={`/category/${c.slug}`}
+                              style={{ display: "block", padding: "5px" }}
+                            >
+                              {c.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </MenuItem>
+                    </Menu>
                   </div>
                 </li>
 
-                {!auth?.user ? (
-                  <>
-                    <li className="nav-item">
-                      <NavLink to="/register" className="nav-link">
-                        Register
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink to="/login" className="nav-link">
-                        Login
-                      </NavLink>
-                    </li>
-                  </>
-                ) : (
-                  <>
-                    <li className="nav-item dropdown">
-                      <NavLink
-                        className="nav-link dropdown-toggle"
-                        href="#"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        style={{ border: "none" }}
-                      >
-                        {auth?.user?.name}
-                      </NavLink>
-                      <ul className="dropdown-menu">
-                        <li>
-                          <NavLink
-                            to={`/dashboard/${
-                              auth?.user?.role === 1 ? "admin" : "user"
-                            }`}
-                            className="dropdown-item"
-                          >
-                            Dashboard
-                          </NavLink>
-                        </li>
-                        <li>
-                          <NavLink
-                            onClick={handleLogout}
-                            to="/login"
-                            className="dropdown-item"
-                          >
-                            Logout
-                          </NavLink>
-                        </li>
-                      </ul>
-                    </li>
-                  </>
-                )}
+                {!auth?.user ? <></> : <></>}
               </ul>
             </div>
           </div>
         </div>
         <div className="Collection">
-        New Collection
-        <h1>the secret of your<br/> <span>beauty</span><br/> is your skin</h1>
-      </div>
+          New Collection
+          <h1>
+            the secret of your
+            <br /> <span>beauty</span>
+            <br /> is your skin
+          </h1>
+          <button className="explore">Explore More</button>
+        </div>
       </nav>
-
     </>
   );
 };
