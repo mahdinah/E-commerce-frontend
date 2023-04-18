@@ -15,6 +15,9 @@
   --webkit-box-shadow: 0 8px 6px -6px gray;
   border-bottom: solid gray !important;
 }
+a{
+color: inherit;
+}
 
 .dropdown-item {
   box-sizing: border-box;
@@ -25,10 +28,12 @@
   text-align: center;
   transition: black 0.05s ease-in-out;
   z-index: 1;
+text-decoration: none;
 }
 .dropdown-item:hover {
   color: #6d9891;
 }
+
 
 .menu-center {
   display: flex;
@@ -86,6 +91,9 @@
   background: #000000; /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #434343, #000000);
   background: linear-gradient(to right, #434343, #000000);
+}
+.css-6hp17o-MuiList-root-MuiMenu-list{
+  background-color: #f8dede;
 }
 
 .footer a {
@@ -301,6 +309,7 @@ li {
   gap: 5%;
   text-align: center;
 }
+
 #basic-button {
   background-color: rgba(131, 139, 132, 0.3);
 
@@ -487,3 +496,4 @@ color: rgba(0, 0, 0, 0.3);
   background-color: transparent;
   width: 140px;
 }
+
