@@ -15,8 +15,8 @@
   --webkit-box-shadow: 0 8px 6px -6px gray;
   border-bottom: solid gray !important;
 }
-a{
-color: inherit;
+a {
+  color: inherit;
 }
 
 .dropdown-item {
@@ -28,12 +28,11 @@ color: inherit;
   text-align: center;
   transition: black 0.05s ease-in-out;
   z-index: 1;
-text-decoration: none;
+  text-decoration: none;
 }
 .dropdown-item:hover {
   color: #6d9891;
 }
-
 
 .menu-center {
   display: flex;
@@ -92,7 +91,7 @@ text-decoration: none;
   background: -webkit-linear-gradient(to right, #434343, #000000);
   background: linear-gradient(to right, #434343, #000000);
 }
-.css-6hp17o-MuiList-root-MuiMenu-list{
+.css-6hp17o-MuiList-root-MuiMenu-list {
   background-color: #f8dede;
 }
 
@@ -384,12 +383,11 @@ h1 span:hover {
   background-color: #6d9891;
 }
 
-
 .maino {
   margin-top: 10%;
   margin-left: 38%;
-width: 350px;
-box-shadow: 5px 20px 50px #000;
+  width: 350px;
+  box-shadow: 5px 20px 50px #000;
 }
 
 .mainter {
@@ -434,9 +432,9 @@ box-shadow: 5px 20px 50px #000;
   outline: none;
   border-radius: 5px;
 }
-.inputos::placeholder{
+.inputos::placeholder {
   font-size: 13px;
-color: rgba(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.3);
 }
 .signos {
   width: 60%;
@@ -468,7 +466,6 @@ color: rgba(0, 0, 0, 0.3);
 .logines .labelos {
   color: #dd826f;
   transform: scale(0.6);
-
 }
 .logines .labelos:hover {
   color: #6d9891;
@@ -496,4 +493,9 @@ color: rgba(0, 0, 0, 0.3);
   background-color: transparent;
   width: 140px;
 }
-
+/* .roww {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+} */
