@@ -174,7 +174,53 @@ a {
   color: white;
   padding: 20px 0px;
 }
+.lol {
+  background-image: url("https://png.pngtree.com/background/20210710/original/pngtree-peach-blossom-forest-cosmetics-clothing-spring-new-background-material-picture-image_1021066.jpg");
+  background-repeat: no-repeat, repeat;
+  background-size: 100% 850px;
+  height: 850px;
+}
+.lolbut {
+  font-weight: bold;
+  font-family: fantasy;
+  font-size: 2.5rem;
+  cursor: pointer;
+  background-color: #a975e7;
+  margin-top: 11rem;
+  margin-left: 2rem;
+  padding: 2.8rem 7rem;
+  color: black;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease-out;
+}
 
+.lolbut:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: #5c1597;
+  opacity: 0.5;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease-out;
+}
+
+.lolbut:hover {
+  background-color: #8D43A6;
+  color: white;
+  transition: all 0.5s ease-out;
+}
+
+
+.lolbut:hover:before {
+  width: 500px;
+  height: 500px;
+  transition: all 0.5s ease-out;
+}
 .navbar-expand-lg {
   background-image: url("./Images/5.jpg");
   background-repeat: no-repeat, repeat;
