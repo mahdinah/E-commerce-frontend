@@ -15,8 +15,8 @@
   --webkit-box-shadow: 0 8px 6px -6px gray;
   border-bottom: solid gray !important;
 }
-a{
-color: inherit;
+a {
+  color: inherit;
 }
 
 .dropdown-item {
@@ -28,12 +28,11 @@ color: inherit;
   text-align: center;
   transition: black 0.05s ease-in-out;
   z-index: 1;
-text-decoration: none;
+  text-decoration: none;
 }
 .dropdown-item:hover {
   color: #6d9891;
 }
-
 
 .menu-center {
   display: flex;
@@ -93,7 +92,7 @@ text-decoration: none;
   background: -webkit-linear-gradient(to right, #434343, #000000);
   background: linear-gradient(to right, #434343, #000000);
 }
-.css-6hp17o-MuiList-root-MuiMenu-list{
+.css-6hp17o-MuiList-root-MuiMenu-list {
   background-color: #f8dede;
 }
 
@@ -176,7 +175,53 @@ text-decoration: none;
   color: white;
   padding: 20px 0px;
 }
+.lol {
+  background-image: url("https://png.pngtree.com/background/20210710/original/pngtree-peach-blossom-forest-cosmetics-clothing-spring-new-background-material-picture-image_1021066.jpg");
+  background-repeat: no-repeat, repeat;
+  background-size: 100% 850px;
+  height: 850px;
+}
+.lolbut {
+  font-weight: bold;
+  font-family: fantasy;
+  font-size: 2.5rem;
+  cursor: pointer;
+  background-color: #a975e7;
+  margin-top: 11rem;
+  margin-left: 2rem;
+  padding: 2.8rem 7rem;
+  color: black;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease-out;
+}
 
+.lolbut:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: #5c1597;
+  opacity: 0.5;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease-out;
+}
+
+.lolbut:hover {
+  background-color: #8D43A6;
+  color: white;
+  transition: all 0.5s ease-out;
+}
+
+
+.lolbut:hover:before {
+  width: 500px;
+  height: 500px;
+  transition: all 0.5s ease-out;
+}
 .navbar-expand-lg {
   /* background-image: url("./Images/11.jpg"); */
   background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("./Images/11.jpg");
@@ -392,14 +437,13 @@ h1 span:hover {
   background-color: #6d9891;
 }
 
-
 .maino {
   margin-top: 10%;
   margin-left: 38%;
+
 width: 350px;
 box-shadow: 5px 20px 50px #000;
 border-radius: 10px;
-
 
 }
 
@@ -443,9 +487,9 @@ border-radius: 10px;
   outline: none;
   border-radius: 5px;
 }
-.inputos::placeholder{
+.inputos::placeholder {
   font-size: 13px;
-color: rgba(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.3);
 }
 .signos {
   width: 60%;
@@ -587,4 +631,9 @@ visibility: visible;
   background-color: transparent;
   width: 140px;
 }
-
+/* .roww {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+} */

@@ -44,10 +44,10 @@
   .similar-products .card img:hover {
     transform: scale(0.9);
   }
-  
   .similar-products .card-img-top {
     height: 300px !important;
   }
+
   .m-2 {
     width: 280px;
     margin-left: 10px;
@@ -99,3 +99,4 @@ margin-left: 120px;
     flex-flow: column; 
     gap: 10px;
   }
+
