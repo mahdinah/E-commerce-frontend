@@ -1,0 +1,28 @@
+
+.bestproduct {
+  display: flex;
+  border: 1px solid black;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 40px;
+  height: 400px;
+  background-color: antiquewhite;
+}
+.textios {
+  width: 60%;
+}
+.textios h3 {
+    width: 70%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+    line-height: 2em;
+    word-spacing: 0.8em;
+
+}
+.textios h1 {
+    color: #385a3d;
+    word-spacing: 0.2em;
+}
+.reactplay {
+  margin: 30px 30px 30px 28%;
+}

@@ -1,28 +1,47 @@
 import React from "react";
 import Layout from "./../components/Layout/Layout";
+import bestprod from "../Images/13.jpg";
+import bestprod1 from "../Images/14.jpg";
+import bestprod2 from "../Images/15.jpg";
+
+
+import "../styles/Aboutus.css";
+import ReactPlayer from "react-player";
 
 const About = () => {
+
   return (
     <Layout title={"About us - Ecommer app"}>
-      <div className="row contactus ">
-        <div className="col-md-6 ">
-          <img
-            src="/images/about.jpeg"
-            alt="contactus"
-            style={{ width: "100%" }}
+      <div className="About-us">
+        <div className="bestproduct">
+          <div className="textios">
+            <h1>
+              "Adding Vibrance, Obtaining Nourishment: AVON's Beauty Essentials"
+            </h1>
+            <br />
+            <h3>
+              Pioneering in listening to women’s needs and speaking out for
+              them. Standing for what matters to them. Supporting their
+              endeavours. We’re a company that connects people through beauty,
+              sharing passion, innovation and expertise - affordably. We use the
+              power of beauty to transform women’s lives for the better.
+            </h3>
+          </div>
+        <div>
+      </div>
+      </div>
+
+      </div>
+
+      <div>
+        <div>
+          <ReactPlayer
+            className="reactplay"
+            url="https://www.youtube.com/watch?v=YhlJLxTObmo"
+            // playing
           />
         </div>
-        <div className="col-md-4">
-          <p className="text-justify mt-2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-            officiis obcaecati esse tempore unde ratione, eveniet mollitia,
-            perferendis eius temporibus dicta blanditiis doloremque explicabo
-            quasi sunt vero optio cum aperiam vel consectetur! Laborum enim
-            accusantium atque, excepturi sapiente amet! Tenetur ducimus aut
-            commodi illum quidem neque tempora nam.
-          </p>
         </div>
-      </div>
     </Layout>
   );
 };

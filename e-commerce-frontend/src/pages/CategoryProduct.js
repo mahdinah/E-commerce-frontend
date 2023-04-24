@@ -2,12 +2,20 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
 import { useParams, useNavigate } from "react-router-dom";
 import "../styles/CategoryProductStyles.css";
+import { useCart } from "../context/cart";
+import toast from "react-hot-toast";
+
 import axios from "axios";
 const CategoryProduct = () => {
   const params = useParams();
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [cart, setCart] = useCart();
+
 
   useEffect(() => {
     if (params?.slug) getPrductsByCat();
@@ -26,12 +34,12 @@ const CategoryProduct = () => {
 
   return (
     <Layout>
-      <div className="container mt-3 category">
+      <div className="avonhome-page">
         <h4 className="text-center">Category - {category?.name}</h4>
         <h6 className="text-center">{products?.length} result found </h6>
         <div className="row">
-          <div className="col-md-9 offset-1">
-            <div className="d-flex flex-wrap">
+          <div className="productitem">
+            <div className="rowcolitem">
               {products?.map((p) => (
                 <div className="card m-2" key={p._id}>
                   <img
@@ -54,13 +62,13 @@ const CategoryProduct = () => {
                     </p>
                     <div className="card-name-price">
                       <button
-                        className="btn btn-info ms-1"
+                        className="btncard"
                         onClick={() => navigate(`/product/${p.slug}`)}
                       >
                         More Details
                       </button>
-                      {/* <button
-                    className="btn btn-dark ms-1"
+                      <button
+                    className="addbtncard"
                     onClick={() => {
                       setCart([...cart, p]);
                       localStorage.setItem(
@@ -71,7 +79,7 @@ const CategoryProduct = () => {
                     }}
                   >
                     ADD TO CART
-                  </button> */}
+                  </button>
                     </div>
                   </div>
                 </div>
