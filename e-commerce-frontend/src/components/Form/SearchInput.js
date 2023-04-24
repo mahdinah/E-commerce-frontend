@@ -5,7 +5,12 @@ import { useNavigate } from "react-router-dom";
 const SearchInput = () => {
   const [values, setValues] = useSearch();
   const navigate = useNavigate();
-
+  const scrollToBottom = () => {
+    window.scrollTo({
+      top: 1010,
+      behavior: 'smooth',
+    });
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -36,7 +41,7 @@ const SearchInput = () => {
           value={values.keyword}
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}
         />
-        <button className="btn btn-outline-success" type="submit" >
+        <button className="btn btn-outline-success" type="submit"  onClick={scrollToBottom}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="25"

@@ -13,20 +13,20 @@ const ForgotPasssword = () => {
   const navigate = useNavigate();
 
   // form function
-  const handleSubmit = async (e) => {
+  const handleSubmitik = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/v1/auth/forgot-password", {
+      const restik = await axios.post("/api/v1/auth/forgot-password", {
         email,
         newPassword,
         answer,
       });
-      if (res && res.data.success) {
-        toast.success(res.data && res.data.message);
+      if (restik && restik.data.success) {
+        toast.success(restik.data && restik.data.message);
 
-        navigate("/login");
+        navigate("/");
       } else {
-        toast.error(res.data.message);
+        toast.error(restik.data.message);
       }
     } catch (error) {
       console.log(error);
@@ -36,7 +36,7 @@ const ForgotPasssword = () => {
   return (
     <Layout title={"Forgot Password - Ecommerce APP"}>
       <div className="form-container ">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmitik}>
           <h4 className="title">RESET PASSWORD</h4>
 
           <div className="mb-3">
