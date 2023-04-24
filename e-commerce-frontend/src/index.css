@@ -43,6 +43,7 @@ text-decoration: none;
   margin-left: 87%;
 }
 .explore {
+  width: 200px;
   margin-bottom: 40px;
   font-size: 20px;
   cursor: pointer;
@@ -177,10 +178,13 @@ text-decoration: none;
 }
 
 .navbar-expand-lg {
-  background-image: url("./Images/5.jpg");
+  /* background-image: url("./Images/11.jpg"); */
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("./Images/11.jpg");
+
   background-repeat: no-repeat, repeat;
   background-size: 100% 850px;
   height: 850px;
+
 }
 .navinfo {
   display: flex;
@@ -230,6 +234,7 @@ li {
 .nav-item {
   list-style-type: none;
   display: flex;
+margin-left: 20px;
 }
 
 .searchinputo {
@@ -308,6 +313,7 @@ li {
   display: flex;
   gap: 5%;
   text-align: center;
+  margin-left: -30px;
 }
 
 #basic-button {
@@ -351,7 +357,9 @@ li {
   color: #fff;
   display: inline-block;
   line-height: 1.8;
-  padding: 0 16px;
+  padding-left: 1px;
+  padding-right: 1px;
+margin-top: -10px;
 }
 .logo-6 h3 span:hover {
   background-color: #6d9891;
@@ -390,6 +398,9 @@ h1 span:hover {
   margin-left: 38%;
 width: 350px;
 box-shadow: 5px 20px 50px #000;
+border-radius: 10px;
+
+
 }
 
 .mainter {
@@ -406,9 +417,7 @@ box-shadow: 5px 20px 50px #000;
   width: 100%;
   height: 100%;
 }
-.signupes .labelos:hover {
-  color: #6d9891;
-}
+
 .signupes .labelos {
   color: #ffffff;
 }
@@ -458,31 +467,113 @@ color: rgba(0, 0, 0, 0.3);
 .signos:hover {
   background: #6d9891;
 }
-.logines {
-  height: 490px;
+.forgoto{
+  height: 460px;
   background: #eee;
   border-radius: 60% / 10%;
-  transform: translateY(-100px);
+  transform: translateY(-180px);
   transition: 0.8s ease-in-out;
+  visibility: hidden;
+}
+#chks{
+  display: none;
+}
+#chks:checked ~  .forgoto{
+  transform: translateY(-540px);
+visibility: visible;
+
+}
+.forgoto .labelos{
+  margin-top: -400px;
+  font-size: 22px;
+  color: #dd826f;
+  padding-top: 20px;
+}
+.forgoto .labelos:hover{
+  color: #6d9891;
+}
+.forgotos{
+  width: 60%;
+  height: 40px;
+  margin: 10px auto;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  background: #dd826f;
+  font-size: 1em;
+  font-weight: bold;
+  margin-top: 20px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+}
+.forgotos:hover{
+background: #6d9891;
+}
+.logines {
+  height: 460px;
+  background: #eee;
+  border-radius: 60% / 10%;
+  transform: translateY(-180px);
+  transition: 0.8s ease-in-out;
+  visibility: hidden;
 }
 .logines .labelos {
   color: #dd826f;
   transform: scale(0.6);
-
 }
 .logines .labelos:hover {
   color: #6d9891;
 }
+.signupes .labelos:hover {
+  color: #6d9891;
+}
+.loginos{
+  width: 60%;
+  height: 40px;
+  margin: 10px auto;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  background: #dd826f;
+  font-size: 1em;
+  font-weight: bold;
+  margin-top: 20px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+}
+
+.signupes .loginos:hover{
+  background: #6d9891;
+  color: #eee;
+}
+
+/* .logines .labelos:hover {
+  color: #6d9891;
+} */
 
 #chk:checked ~ .logines {
-  transform: translateY(-500px);
+  transform: translateY(-480px);
+visibility: visible;
 }
+
+
+
+
 #chk:checked ~ .logines .labelos {
   transform: scale(1);
 }
 #chk:checked ~ .signupes .labelos {
   transform: scale(0.6);
 }
+
 
 .buttologin {
   background-color: transparent;
