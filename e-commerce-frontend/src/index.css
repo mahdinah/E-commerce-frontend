@@ -176,52 +176,68 @@ a {
   padding: 20px 0px;
 }
 .lol {
-  background-image: url("https://png.pngtree.com/background/20210710/original/pngtree-peach-blossom-forest-cosmetics-clothing-spring-new-background-material-picture-image_1021066.jpg");
-  background-repeat: no-repeat, repeat;
-  background-size: 100% 850px;
-  height: 850px;
+  display: flex;
+  flex-wrap: wrap;
+    margin-left: 10px;
+  margin-bottom:100px;
+gap: 30px;
 }
+.allcat{
+  margin-top: 50px;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-family: 'Courier New', Courier, monospace;
+  text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+  }
+
 .lolbut {
-  font-weight: bold;
-  font-family: fantasy;
-  font-size: 2.5rem;
+  margin-left: 100px;
+  margin-top: 100px;
+  width: 140px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
   cursor: pointer;
-  background-color: #a975e7;
-  margin-top: 11rem;
-  margin-left: 2rem;
-  padding: 2.8rem 7rem;
-  color: black;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.5s ease-out;
+  outline: none;
 }
 
-.lolbut:before {
+/* .lolbut:before {
   content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   width: 0;
   height: 0;
-  background-color: #5c1597;
+  background-color: #f3ac9e;
   opacity: 0.5;
   border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: all 0.5s ease-out;
-}
+}*/
 
 .lolbut:hover {
-  background-color: #8D43A6;
+  background-color: #6d9891;
   color: white;
   transition: all 0.5s ease-out;
-}
+} 
 
 
-.lolbut:hover:before {
+/* .lolbut:hover:before {
   width: 500px;
   height: 500px;
   transition: all 0.5s ease-out;
-}
+} */
 .navbar-expand-lg {
   /* background-image: url("./Images/11.jpg"); */
   background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("./Images/11.jpg");

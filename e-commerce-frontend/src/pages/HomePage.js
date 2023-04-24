@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Checkbox, Radio } from "antd";
 import { Prices } from "../components/Prices";
@@ -7,7 +7,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import Layout from "./../components/Layout/Layout";
 import "../styles/Homepage.css";
-
+import { Select } from "antd";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -19,6 +19,10 @@ const HomePage = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const { Option } = Select;
+
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
 
 
   //get all cat
@@ -80,29 +84,51 @@ const HomePage = () => {
   // filter by cat
   const handleFilter = (value, id) => {
     let all = [...checked];
-    if (value) {
-      all.push(id);
-    } else {
-      all = all.filter((c) => c !== id);
+    if (id) {
+      if (value) {
+        all.push(id);
+      } else {
+        all = all.filter((c) => c !== id);
+      }
     }
     setChecked(all);
   };
+  function handleCategoryChange(value) {
+    setSelectedCategories(value);
+    // call your filter function with the selected categories
+    handleFilter(true, value);
+    }
   useEffect(() => {
-    if (!checked.length || !radio.length) getAllProducts();
-  }, [checked.length, radio.length]);
+    if (!checked.length || !radio.length || selectedCategories.length) {
+      getAllProducts();
+    }
+  }, [checked.length, radio.length, selectedCategories.length]);
 
   useEffect(() => {
-    if (checked.length || radio.length) filterProduct();
-  }, [checked, radio]);
+    if (checked.length || radio.length || selectedCategories.length) {
+      filterProduct();
+    } else {
+      getAllProducts();
+    }
+  }, [checked, radio, selectedCategories]);
+  
 
-  //get filterd product
+  // get filtered product by category
+  const filterByCategory = (product) => {
+    if (selectedCategories.length === 0) {
+      return true;
+    }
+    return selectedCategories.includes(product.category._id);
+  };
+
+  // filter products based on category and price
   const filterProduct = async () => {
     try {
       const { data } = await axios.post("/api/v1/product/product-filters", {
         checked,
         radio,
       });
-      setProducts(data?.products);
+      setProducts(data?.products.filter(filterByCategory));
     } catch (error) {
       console.log(error);
     }
@@ -112,18 +138,30 @@ const HomePage = () => {
       <div className="avonhome-page">
         <div className="pricecatfilter">
           <h4 className="text-center">Filter By Category</h4>
-
           <div className="catfilter">
-            {categories?.map((c) => (
-              <Checkbox className="checkbo"
-                key={c._id}
-                onChange={(e) => handleFilter(e.target.checked, c._id)}
-              >
-                {c.name}
-              </Checkbox>
-            ))}
+            <Select
+              className="multiple"
+              mode="multiple"
+              placeholder="Please select categories"
+              value={selectedCategories}
+              onChange={handleCategoryChange}
+            >
+              {categories?.map((c) => (
+                <Option key={c._id} value={c._id}>
+                  {c.name}
+                </Option>
+              ))}
+            </Select>
+            <div className="resetfilter">
+            <button
+              className="btndanger"
+              onClick={() => window.location.reload()}
+            >
+              RESET FILTERS
+            </button>
           </div>
-        
+          </div>
+
           {/* price filter */}
           <h4 className="text-center mt-4">Filter By Price</h4>
           <div className="pricefilter">
@@ -135,19 +173,9 @@ const HomePage = () => {
               ))}
             </Radio.Group>
           </div>
-          <div className="resetfilter">
-            <button
-              className="btndanger"
-              onClick={() => window.location.reload()}
-            >
-              RESET FILTERS
-            </button>
-          </div>
+
         </div>
-        {/* <div>
-          <h5 className="text-center1">OUR PRODUCTS</h5>
-          <h2 className="text-center1">Featured Products</h2>
-        </div> */}
+
         <div className="productitem">
           <div className="rowcolitem">
             {products?.map((p) => (
@@ -158,7 +186,6 @@ const HomePage = () => {
                   alt={p.name}
                 />
                 <div className="card-body">
-             
                   <div className="card-name-price">
                     <h5 className="card-title">{p.name}</h5>
                     <h5 className="card-title card-price">
@@ -168,15 +195,13 @@ const HomePage = () => {
                       })}
                     </h5>
                   </div>
-                  <p className="card-text">
-                    {p.description.substring(0, 60)}
-                  </p>
+                  <p className="card-text">{p.description.substring(0, 60)}</p>
                   <div className="card-name-price">
                     <button
                       className="btncard"
                       onClick={() => navigate(`/product/${p.slug}`)}
                     >
-                      More Details
+                      MORE DETAILS
                     </button>
                     <button
                       className="addbtncard"
@@ -196,31 +221,21 @@ const HomePage = () => {
               </div>
             ))}
           </div>
-
         </div>
 
         <div className="loadmorediv">
-            {products && products.length < total && (
-              <button
-                className="loadmore"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setPage(page + 1);
-                }}
-              >
-                {loading ? (
-                  "Loading ..."
-                ) : (
-                  <>
-                    {" "}
-                    All Products
-                   
-                  </>
-                )}
-              </button>
-            )}
-          </div>
-
+          {products && products.length < total && (
+            <button
+              className="loadmore"
+              onClick={(e) => {
+                e.preventDefault();
+                setPage(page + 1);
+              }}
+            >
+              {loading ? "Loading ..." : <> All Products</>}
+            </button>
+          )}
+        </div>
       </div>
     </Layout>
   );
