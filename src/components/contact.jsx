@@ -107,7 +107,7 @@ function ContactUs() {
 						<div className="wrapper">
 							<div className="row no-gutters mb-5">
 								<div className="col-md-7">
-									<div className="contact-wrap w-100 p-md-5 p-4">
+									<div className="contact-wrap w-100 p-md-5 p-4 form">
 										<h3 className="mb-0">Contact Us</h3>
 
 										<form
@@ -209,7 +209,7 @@ function ContactUs() {
 									</div>
 								</div>
 							</div>
-							<div class="flex row justify-content-space-between margin-top-3">
+							<div class="icoons flex row justify-content-space-between margin-top-3">
 								<div class="col-md-3">
 									<div class="dbox w-100 text-center">
 										<div class="icon d-flex align-items-center justify-content-center">
