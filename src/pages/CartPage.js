@@ -79,7 +79,7 @@ const CartPage = () => {
   };
   return (
     <Layout>
-      <div className=" cart-page">
+      <div className=" cartoo">
         <div className="row">
           <div className="col-md-12">
             <h1 className="text-center bg-light p-2 mb-1">
@@ -97,14 +97,14 @@ const CartPage = () => {
           </div>
         </div>
         <div className="container ">
-          <div className="row ">
-            <div className="col-md-7  p-0 m-0">
+          <div className="row">
+            <div className="col-md-7kk  p-0 m-0">
               {cart?.map((p) => (
-                <div className="row card flex-row" key={p._id}>
+                <div className="kemshe" key={p._id}>
                   <div className="col-md-4">
                     <img
                       src={`/api/v1/product/product-photo/${p._id}`}
-                      className="card-img-top"
+                      className="cart-image"
                       alt={p.name}
                       width="100%"
                       height={"130px"}
@@ -117,7 +117,7 @@ const CartPage = () => {
                   </div>
                   <div className="col-md-4 cart-remove-btn">
                     <button
-                      className="btn btn-danger"
+                      className="rmvbtncard"
                       onClick={() => removeCartItem(p._id)}
                     >
                       Remove
