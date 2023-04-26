@@ -173,7 +173,7 @@ a {
 .dashboard-menu h4 {
   background-color: #434343 !important;
   color: white;
-  padding: 20px 0px;
+  padding: 1.25rem 17.15rem;
 }
 .lol {
   background-image: url("https://png.pngtree.com/background/20210710/original/pngtree-peach-blossom-forest-cosmetics-clothing-spring-new-background-material-picture-image_1021066.jpg");
@@ -211,11 +211,10 @@ a {
 }
 
 .lolbut:hover {
-  background-color: #8D43A6;
+  background-color: #8d43a6;
   color: white;
   transition: all 0.5s ease-out;
 }
-
 
 .lolbut:hover:before {
   width: 500px;
@@ -224,12 +223,12 @@ a {
 }
 .navbar-expand-lg {
   /* background-image: url("./Images/11.jpg"); */
-  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("./Images/11.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("./Images/11.jpg");
 
   background-repeat: no-repeat, repeat;
   background-size: 100% 850px;
   height: 850px;
-
 }
 .navinfo {
   display: flex;
@@ -279,7 +278,7 @@ li {
 .nav-item {
   list-style-type: none;
   display: flex;
-margin-left: 20px;
+  margin-left: 20px;
 }
 
 .searchinputo {
@@ -404,7 +403,7 @@ margin-left: 20px;
   line-height: 1.8;
   padding-left: 1px;
   padding-right: 1px;
-margin-top: -10px;
+  margin-top: -10px;
 }
 .logo-6 h3 span:hover {
   background-color: #6d9891;
@@ -441,10 +440,9 @@ h1 span:hover {
   margin-top: 10%;
   margin-left: 38%;
 
-width: 350px;
-box-shadow: 5px 20px 50px #000;
-border-radius: 10px;
-
+  width: 350px;
+  box-shadow: 5px 20px 50px #000;
+  border-radius: 10px;
 }
 
 .mainter {
@@ -511,7 +509,7 @@ border-radius: 10px;
 .signos:hover {
   background: #6d9891;
 }
-.forgoto{
+.forgoto {
   height: 460px;
   background: #eee;
   border-radius: 60% / 10%;
@@ -519,24 +517,23 @@ border-radius: 10px;
   transition: 0.8s ease-in-out;
   visibility: hidden;
 }
-#chks{
+#chks {
   display: none;
 }
-#chks:checked ~  .forgoto{
+#chks:checked ~ .forgoto {
   transform: translateY(-540px);
-visibility: visible;
-
+  visibility: visible;
 }
-.forgoto .labelos{
+.forgoto .labelos {
   margin-top: -400px;
   font-size: 22px;
   color: #dd826f;
   padding-top: 20px;
 }
-.forgoto .labelos:hover{
+.forgoto .labelos:hover {
   color: #6d9891;
 }
-.forgotos{
+.forgotos {
   width: 60%;
   height: 40px;
   margin: 10px auto;
@@ -554,8 +551,8 @@ visibility: visible;
   transition: 0.2s ease-in;
   cursor: pointer;
 }
-.forgotos:hover{
-background: #6d9891;
+.forgotos:hover {
+  background: #6d9891;
 }
 .logines {
   height: 460px;
@@ -575,7 +572,7 @@ background: #6d9891;
 .signupes .labelos:hover {
   color: #6d9891;
 }
-.loginos{
+.loginos {
   width: 60%;
   height: 40px;
   margin: 10px auto;
@@ -594,7 +591,7 @@ background: #6d9891;
   cursor: pointer;
 }
 
-.signupes .loginos:hover{
+.signupes .loginos:hover {
   background: #6d9891;
   color: #eee;
 }
@@ -605,11 +602,8 @@ background: #6d9891;
 
 #chk:checked ~ .logines {
   transform: translateY(-480px);
-visibility: visible;
+  visibility: visible;
 }
-
-
-
 
 #chk:checked ~ .logines .labelos {
   transform: scale(1);
@@ -617,7 +611,6 @@ visibility: visible;
 #chk:checked ~ .signupes .labelos {
   transform: scale(0.6);
 }
-
 
 .buttologin {
   background-color: transparent;
@@ -631,9 +624,23 @@ visibility: visible;
   background-color: transparent;
   width: 140px;
 }
-/* .roww {
+.adashboard {
   display: flex;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
-} */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  min-height: 30rem;
+  max-width: 40rem;
+  position: absolute;
+  top: 100%;
+  left: 34.5%;
+}
+.adminbtn {
+  display: "block";
+  padding: "10px";
+  background-color: "blue";
+  color: "white";
+  text-decoration: "none";
+  text-align: "center";
+  border-radius: "5px";
+  margin: "10px 0";
+}
