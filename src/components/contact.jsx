@@ -90,17 +90,6 @@ function ContactUs() {
 
 	return (
 		<section className="ftco-section">
-			{/* <div>
-				<form ref={form} onSubmit={sendEmail}>
-					<label htmlFor="name">Name:</label>
-					<input type="text" id="name" name="user_name" required />
-					<label htmlFor="email">Email:</label>
-					<input type="email" id="email" name="user_email" required />
-					<label htmlFor="message">Message:</label>
-					<textarea id="message" name="message" rows="5" required></textarea>
-					<button type="submit">Send</button>
-				</form>
-			</div> */}
 			<div className="container">
 				<div className="row justify-content-center">
 					<div className="col-md-12">
@@ -213,7 +202,7 @@ function ContactUs() {
 								<div class="col-md-3">
 									<div class="dbox w-100 text-center">
 										<div class="icon d-flex align-items-center justify-content-center">
-											<span class="fa fa-map-marker"></span>
+											<span class="fa fa-instagram"></span>
 										</div>
 										<div class="text">
 											<p>
