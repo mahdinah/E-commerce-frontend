@@ -1,27 +1,38 @@
 /* ===================================
 ========= register page  */
-.form-container {
-    margin-top: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 70vh;
-    flex-direction: column;
-    background-color: #ffdee9;
-    background-image: linear-gradient(0deg, #ffdee9 0%, #b5fffc 100%);
+
+  /* .popup-header{
+
+    padding: 0 30px 0 15px;
+    margin-left: -350px;
+    margin-top: -200px;
+  width:200%;
+  height: 210%;
+      background-color: rgba(119, 115, 115, 0.35);
   }
-  
-  .form-container form {
+  .popup{
+    height: 400px;
+    width: 50%;
+    position: absolute;
+    top: 25%;
+    right: 25%;
+    /* background-color: #434343; */
+   
+  /* .popup form {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    padding: 20px;
-    background-color: #fff;
-  }
-  
+    background-color: #302f2f;
+    width:50%;
+
+  } */
+
   .form-container form .title {
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
+    margin-top: 10px;
+
     font-weight: bold;
     font-family: "Playfair Display", serif;
+    /* background-color: antiquewhite; */
   }
   
   .form-container form input {
