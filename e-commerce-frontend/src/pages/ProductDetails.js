@@ -58,20 +58,32 @@ const ProductDetails = () => {
             <h1 className="text-center">Product Details</h1>
             <hr />
             <div className="priceinfodesc">
-            <h6>Name : {product.name}</h6>
-            <h6>Description : {product.description}</h6>
-            <h6>
-              Price :
-              {product?.price?.toLocaleString("en-US", {
-                style: "currency",
-                currency: "USD",
-              })}
-            </h6>
-            <h6>Category : {product?.category?.name}</h6>
+              <h6>Name : {product.name}</h6>
+              <h6>Description : {product.description}</h6>
+              <h6>
+                Price :
+                {product?.price?.toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                })}
+              </h6>
+              <h6>Category : {product?.category?.name}</h6>
             </div>
           </div>
-          <button class="addbtncard outdivcard">ADD TO CART</button>
-
+          <div>
+            {relatedProducts?.map((p) => (
+              <button
+                className="addbtncard outdivcard"
+                onClick={() => {
+                  setCart([...cart, p]);
+                  localStorage.setItem("cart", JSON.stringify([...cart, p]));
+                  toast.success("Item Added to cart");
+                }}
+              >
+                ADD TO CART
+              </button>
+            ))}
+          </div>
         </div>
         <hr />
         <div className="productitem">

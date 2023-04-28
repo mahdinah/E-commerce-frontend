@@ -1,14 +1,7 @@
-.card-container .cardss {
-    /* display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    flex-direction: column; */
-    
-}
+
 
 .card {
     flex: 1 1 250px;
-   
     margin: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -21,7 +14,9 @@
     font-size: 30px;
     margin-bottom: 20px;
   }
-  
+  /* .card-text {
+   margin-left: 10px;
+  } */
   .card-title {
     font-size: 20px;
     font-weight: bold;

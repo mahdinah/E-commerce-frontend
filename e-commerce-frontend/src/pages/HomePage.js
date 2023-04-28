@@ -152,20 +152,15 @@ const HomePage = () => {
                 </Option>
               ))}
             </Select>
-            <div className="resetfilter">
-            <button
-              className="btndanger"
-              onClick={() => window.location.reload()}
-            >
-              RESET FILTERS
-            </button>
+
           </div>
-          </div>
+
 
           {/* price filter */}
           <h4 className="text-center mt-4">Filter By Price</h4>
+          <div className="prfil">
           <div className="pricefilter">
-            <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+            <Radio.Group className="radiogrp" onChange={(e) => setRadio(e.target.value)}>
               {Prices?.map((p) => (
                 <div className="radiobtn" key={p._id}>
                   <Radio value={p.array}>{p.name}</Radio>
@@ -173,7 +168,15 @@ const HomePage = () => {
               ))}
             </Radio.Group>
           </div>
-
+          </div>
+          <div className="resetfilter">
+            <button
+              className="btndanger"
+              onClick={() => window.location.reload()}
+            >
+              RESET FILTERS
+            </button>
+          </div>
         </div>
 
         <div className="productitem">
