@@ -1,0 +1,52 @@
+.dashboard-menu-panel{
+    display: flex;
+    flex-flow: wrap;
+    flex-direction: column;
+    width:200px;
+   align-items: start;
+   gap: 50px;
+   margin-left: 1%;
+   margin-bottom: 30px;
+
+   padding: 10px;
+   padding-bottom: 200px;
+border-right: 1px solid black;
+background-color: aqua;
+}
+.list-panel-item{
+    display: flex;
+    flex-flow: wrap;
+    align-items: center;
+gap: 10px;
+color: rgb(86, 83, 83);
+cursor: pointer;
+text-decoration: none;
+}
+.list-panel-item:first-child{
+height: 90px;
+border-bottom: 1px solid rgb(119, 115, 115);
+}
+.list-panel-item:hover{
+opacity: 0.8;
+}
+.col-admin-pan{
+    /* background-color: aliceblue; */
+}
+.admin-panel{
+    display: flex;
+    flex-direction: column;
+/* background-color: aqua; */
+width: 350px;
+height: 350px;
+border-radius: 5px;
+align-items: start;
+box-shadow: 0 6px 10px -4px rgba(0,0,0,.15);
+padding: 30px;
+}
+.admin-dash{
+/* background-color: rgb(139, 139, 179); */
+display: flex;
+flex-wrap: wrap;
+gap: 50px;
+margin-top: -100px;
+}
