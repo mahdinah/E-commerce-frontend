@@ -131,8 +131,10 @@ function ContactUs() {
 							<iframe
 								title="Weed Recreation &amp; Parks Skate Park Map"
 								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1216.4923444290503!2d-122.38860719338857!3d41.43675037311849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54ce74bbfb352295%3A0x32669dd162d62e00!2sWeed%20Recreation%20%26%20Parks%20Skate%20Park!5e0!3m2!1sen!2slb!4v1682376507462!5m2!1sen!2slb"
-								width="100%"
-								height="100%"
+								// width="100%"
+								// height="100%"
+								width="600"
+								height="450"
 								style={{ border: 0 }}
 								allowFullScreen=""
 								loading="lazy"
@@ -145,8 +147,8 @@ function ContactUs() {
 				<div className="downer">
 					<div className="shortCuts">
 						{/* //!---------------------------------------------------------------- */}
-						<div className="instaH">
-							<div class="iIconH">
+						<div className="hs">
+							<div class="IconH">
 								<span class="fa fa-instagram"></span>
 							</div>
 							<div class="text">
@@ -160,8 +162,8 @@ function ContactUs() {
 							</div>
 						</div>
 						{/* //!---------------------------------------------------------------- */}
-						<div className="phoneH">
-							<div className="pIconH">
+						<div className="hs">
+							<div className="IconH">
 								<span class="fa fa-phone"></span>
 							</div>
 							<div class="text">
@@ -172,8 +174,8 @@ function ContactUs() {
 							</div>
 						</div>
 						{/* //!---------------------------------------------------------------- */}
-						<div className="emailH">
-							<div className="mIconH">
+						<div className="hs">
+							<div className="IconH">
 								<span class="fa fa-paper-plane"></span>
 							</div>
 							<div class="text">
@@ -184,8 +186,8 @@ function ContactUs() {
 							</div>
 						</div>
 						{/* //!---------------------------------------------------------------- */}
-						<div className="websiteH">
-							<div className="wIconH">
+						<div className="hs">
+							<div className="IconH">
 								<span class="fa fa-globe"></span>
 							</div>
 							<div class="text">
