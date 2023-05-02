@@ -149,12 +149,7 @@ try {
                   <div className="mb-3">
                     <h4>Current Address</h4>
                     <h5>{auth?.user?.address}</h5>
-                    <button
-                      className="btn btn-outline-warning"
-                      onClick={() => navigate("/dashboard/user/profile")}
-                    >
-                      Update Address
-                    </button>
+                   
                   </div>
                 </>
               ) : (
@@ -180,6 +175,14 @@ try {
                   )}
                 </div>
               )}
+              <div className="addresupdate">
+              <button
+                      className="btncards"
+                      onClick={() => navigate("/dashboard/user/profile")}
+                    >
+                      Update Address
+                    </button>
+              </div>
             </div>
           </div>
         </div>

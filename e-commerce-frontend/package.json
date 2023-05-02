@@ -37,6 +37,7 @@
     "morgan": "^1.10.0",
     "npm": "^9.6.4",
     "react": "^18.2.0",
+    "react-admin": "^4.10.1",
     "react-bootstrap": "^2.7.4",
     "react-bootstrap-carousel": "^4.1.1",
     "react-bootstrap-icons": "^1.10.3",

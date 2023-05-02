@@ -13,14 +13,16 @@ const Profile = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [answer, setAnswer] = useState("");
 
   //get user data
   useEffect(() => {
-    const { email, name, phone, address } = auth?.user;
+    const { email, name, phone, address, answer } = auth?.user;
     setName(name);
     setPhone(phone);
     setEmail(email);
     setAddress(address);
+    setAnswer(answer);
   }, [auth?.user]);
 
   // form function
@@ -33,8 +35,9 @@ const Profile = () => {
         password,
         phone,
         address,
+        answer,
       });
-      if (data?.errro) {
+      if (data?.error) {
         toast.error(data?.error);
       } else {
         setAuth({ ...auth, user: data?.updatedUser });
@@ -52,13 +55,13 @@ const Profile = () => {
   return (
     <Layout title={"Your Profile"}>
       <div className="container-fluid m-3 p-3 dashboard">
-        <div className="row">
+        <div className="product-dash">
           <div className="col-md-3">
             <UserMenu />
           </div>
-          <div className="col-md-8">
+          <div className="product-panel-pro">
             <div className="form-container" style={{ marginTop: "-40px" }}>
-              <form onSubmit={handleSubmit}>
+              <form className="pro-form" onSubmit={handleSubmit}>
                 <h4 className="title">USER PROFILE</h4>
                 <div className="mb-3">
                   <input
@@ -112,8 +115,18 @@ const Profile = () => {
                     placeholder="Enter Your Address"
                   />
                 </div>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    value={answer}
+                    onChange={(e) => setAnswer(e.target.value)}
+                    className="form-control"
+                    id="exampleInputEmail1"
+                    placeholder="Enter Your Answer"
+                  />
+                </div>
 
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn-primary-pro">
                   UPDATE
                 </button>
               </form>

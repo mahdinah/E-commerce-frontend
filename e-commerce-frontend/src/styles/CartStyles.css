@@ -73,7 +73,7 @@ margin-top: 10px;
   flex-flow: wrap;
   flex-direction: column;
   justify-content: center;
-  height: 250px;
+  height: 300px;
   width: 600px;
   margin-left: 60px;
   border: 2px solid rgb(165, 160, 160);
@@ -94,6 +94,13 @@ gap:10px;
 font-size: 22px;
 gap: 50%;
 align-items: center;
+}
+
+.mb-3{
+  display: flex;
+  flex-flow: wrap;
+  gap: 100px;
+  font-size: 22px;
 }
 .btncards{
   display: flex;
@@ -130,13 +137,17 @@ padding-bottom: 30px;
   margin-left: 20px;
   font-family: "roboto", sans-serif;
   font-weight: normal;
+  width: 200px;
 }
 .cart-remove-btn{
   display: flex;
   align-items: center;
-gap: 50px;
+gap: 220px;
 margin-left: 75px;
   
+}.addresupdate{
+  margin-top: 230px;
+
 }
 .quantity-buttons{
   border: #ec9c8c 1px solid;

@@ -4,6 +4,8 @@ import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import "../../styles/Admin-User-panel.css";
+
 const Products = () => {
   const [products, setProducts] = useState([]);
 
@@ -24,13 +26,13 @@ const Products = () => {
   }, []);
   return (
     <Layout>
-      <div className="row dashboard">
+      <div className="sidebar-container-pro">
         <div className="col-md-3">
           <AdminMenu />
         </div>
-        <div className="col-md-9 ">
+        <div className="col-md-4">
           <h1 className="text-center">All Products List</h1>
-          <div className="d-flex flex-wrap">
+          <div className="d-flex-pro flex-wrap">
             {products?.map((p) => (
               <Link
                 key={p._id}
@@ -40,10 +42,10 @@ const Products = () => {
                 <div className="card m-2" style={{ width: "18rem" }}>
                   <img
                     src={`/api/v1/product/product-photo/${p._id}`}
-                    className="card-img-top"
+                    className="card-img-top-pro"
                     alt={p.name}
                   />
-                  <div className="card-body">
+                  <div className="card-body-pro">
                     <h5 className="card-title">{p.name}</h5>
                     <p className="card-text">{p.description}</p>
                   </div>
