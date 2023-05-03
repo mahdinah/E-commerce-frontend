@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { Select } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
+import Swal from 'sweetalert2';
 const { Option } = Select;
 
 const UpdateProduct = () => {
@@ -78,6 +79,8 @@ const UpdateProduct = () => {
         toast.error(data?.message);
       } else {
         toast.success("Product Updated Successfully");
+        getAllCategory();
+        getSingleProduct();
         navigate("/dashboard/admin/products");
       }
     } catch (error) {
@@ -88,15 +91,22 @@ const UpdateProduct = () => {
 
   //delete a product
   const handleDelete = async () => {
+    const result = await Swal.fire({
+      icon: 'warning',
+      title: `Are you sure you want to delete This product?`,
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel',
+      reverseButtons: true
+    });
     try {
-      let answer = window.prompt("Are You Sure want to delete this product ? ");
-      if (!answer) return;
+      if (result.isConfirmed){
       const { data } = await axios.delete(
         `/api/v1/product/delete-product/${id}`
       );
       toast.success("Product DEleted Succfully");
       navigate("/dashboard/admin/products");
-    } catch (error) {
+    } }catch (error) {
       console.log(error);
       toast.error("Something went wrong");
     }
@@ -104,13 +114,13 @@ const UpdateProduct = () => {
   return (
     <Layout title={"Dashboard - Create Product"}>
       <div className="container-fluid m-3 p-3">
-        <div className="row">
+        <div className="sidebar-container-pro">
           <div className="col-md-3">
             <AdminMenu />
           </div>
-          <div className="col-md-9">
+          <div className="col-md-4 product-panel">
             <h1>Update Product</h1>
-            <div className="m-1 w-75">
+            <div className="prod-creat-panel">
               <Select
                 bordered={false}
                 placeholder="Select a category"
@@ -128,7 +138,7 @@ const UpdateProduct = () => {
                   </Option>
                 ))}
               </Select>
-              <div className="mb-3">
+              <div className="mb-3 photoupl">
                 <label className="btn btn-outline-secondary col-md-12">
                   {photo ? photo.name : "Upload Photo"}
                   <input
@@ -138,6 +148,16 @@ const UpdateProduct = () => {
                     onChange={(e) => setPhoto(e.target.files[0])}
                     hidden
                   />
+                     <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="30"
+                    fill="currentColor"
+                    class="bi bi-cloud-plus-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm.5 4v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z" />
+                  </svg>
                 </label>
               </div>
               <div className="mb-3">
@@ -220,7 +240,7 @@ const UpdateProduct = () => {
                 </button>
               </div>
               <div className="mb-3">
-                <button className="btn btn-danger" onClick={handleDelete}>
+                <button className="btns btn-danger" onClick={handleDelete}>
                   DELETE PRODUCT
                 </button>
               </div>

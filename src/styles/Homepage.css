@@ -7,16 +7,9 @@
   margin: 10px;
   padding-bottom: 20px;
   text-align: center;
-  align-items: start;
+  justify-content: start;
 }
-.rowcolitem {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 30px 42px;
-  row-gap: 45px;
-  column-gap: 55px;
-  background-color: rgba(255, 255, 255, 0.2);
-}
+
 .btncard {
   background-color: #ec9c8c;
   border-radius: 5px;
@@ -84,6 +77,7 @@ transition: all 0.3s ease 0s;
 cursor: pointer;
 outline: none;
 padding-top: 5px;
+padding-bottom: 10px;
 }
 .pricecatfilter h4{
   margin-left: 20px;
@@ -94,11 +88,11 @@ padding-top: 5px;
 }
 
 
+
 .resetfilter {
   display: flex;
   justify-content: flex-end;
   margin-right: 50px;
-  margin-top: -33px;
 }
 .resetfilter button {
   padding: 10px;
@@ -112,15 +106,37 @@ padding-top: 5px;
   background-color: #275629;
 }
 
-.radiobtn {
-  width: 200px;
-  display: inline-block;
-  margin-left: 20px;
+.radiogrp{
+  margin-left: -160px;
+  margin-top:5px;
 }
+.radiobtn span{
+  color: #555454;
+  font-size: 12px;
+}
+
+.radiobtn {
+  width: 170px;
+  display: inline-block;
+  margin-left: -20px;
+  font-size: 8px;
+}
+.prfil{
+  border: 0.9px solid rgb(196, 193, 193);
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    height: 30px;
+    align-items: center;
+    width: 80%;
+    margin-left: 30px;
+  }
 .m-2 {
   width: 280px;
   margin-left: 10px;
   border: #dcdcdc 0.1px solid;
+  box-shadow: 0 8px 20px -2px rgba(158, 152, 153, 0.5);
+border-radius: 5px;
 }
 .card-title {
   font-size: 22px;
@@ -132,9 +148,9 @@ padding-top: 5px;
   /* justify-content: space-between; */
   margin-top: 12px;
   align-items: center;
-  padding-bottom: 10px;
+  padding-bottom: 30px;
 
-  gap: 5px;
+  gap: 15px;
 }
 .addbtncard {
   background-color: #6d9891;
@@ -170,9 +186,12 @@ padding-top: 5px;
   color: rgb(90, 89, 89);
 }
 .card-text {
+  margin-left: 10px;
+  margin-right: 10px;
+
   text-align: center;
   height: 30px;
-  font-size: 20pxx;
+  font-size: 14px;
 }
 
 .home-page .card img:hover {
@@ -268,3 +287,133 @@ padding-top: 5px;
     grid-template-columns: 1fr;
   }
 }
+@media (max-width: 768px) {
+  .banner-img {
+    margin-top: 30px;
+  }
+
+  .productitem {
+    margin: 5px;
+  }
+
+  .rowcolitem {
+    margin: 20px;
+    row-gap: 25px;
+    column-gap: 45px;
+  }
+
+  .card-img-top {
+    width: 100%;
+    height: auto;
+  }
+
+  .home-page h1 {
+    font-size: 24px;
+  }
+
+  .home-page .card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .pricecatfilter {
+    margin: 20px;
+    font-size: 10px;
+    margin-right: 0px;
+  }
+
+  .radiobtn {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .prfil {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .m-2 {
+    width: 100%;
+  }
+
+  .addbtncard {
+    width: 100%;
+  }
+
+  .home-page button {
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+@media only screen and (max-width: 420px) {
+ 
+ .ant-radio-group{
+  /* background-color: #f8f3f3; */
+  display: flex;
+  flex-flow: row;
+  height: 100px;
+  width: 410px;
+  margin-left: 20px;
+  margin-right: 0px;
+  margin-bottom: 60px;
+
+ }
+ .ant-radio-wrapper{
+  display: flex;
+  width: 125px;
+ }
+ .ant-radio-wrapper span{
+  font-size: 8px;
+  font-weight: bold;
+ }
+ .pricecatfilter {
+  width: 400px;
+  margin-left: 0px;
+  height: 100%;
+  
+ }
+ .prfil{
+  width: 80%;
+visibility: hidden;
+display: flex;
+flex-wrap: wrap;
+margin-top: -20px;
+justify-content: space-between;
+height: 100%;
+ }
+
+
+.radiobtn{
+  visibility:visible ;
+  flex-basis: 30%;
+  width: 100px;
+  margin-top: 20px;
+}
+.radiogrp{
+display: flex;
+flex-flow: wrap;
+}
+ 
+.avonhome-page{
+  width: 390px;
+  margin-left: 10px;
+}
+.pricefilter {
+  width: 400px;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+}
+.resetfilter .btndanger{
+  margin-top: -50px;
+
+  height: 30px;
+  }
+.card-name-price button {
+  width: 70%;
+}
+
+
+}
+

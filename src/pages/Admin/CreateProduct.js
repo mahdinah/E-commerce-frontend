@@ -5,7 +5,10 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { Select } from "antd";
 import { useNavigate } from "react-router-dom";
+import { required } from "react-admin";
+
 const { Option } = Select;
+const requiredinfo = [required()];
 
 const CreateProduct = () => {
   const navigate = useNavigate();
@@ -65,30 +68,32 @@ const CreateProduct = () => {
   return (
     <Layout title={"Dashboard - Create Product"}>
       <div className="container-fluid m-3 p-3 dashboard">
-        <div className="row">
+        <div className="sidebar-container-pro product-bar">
           <div className="col-md-3">
             <AdminMenu />
           </div>
-          <div className="col-md-9">
+          <div className="product-panel">
             <h1>Create Product</h1>
-            <div className="m-1 w-75">
-              <Select
-                bordered={false}
-                placeholder="Select a category"
-                size="large"
-                showSearch
-                className="form-select mb-3"
-                onChange={(value) => {
-                  setCategory(value);
-                }}
-              >
-                {categories?.map((c) => (
-                  <Option key={c._id} value={c._id}>
-                    {c.name}
-                  </Option>
-                ))}
-              </Select>
-              <div className="mb-3">
+            <div className="prod-creat-panel">
+              <div className="mb-3 selectcat">
+                <Select
+                  bordered={false}
+                  placeholder="Select a category"
+                  size="large"
+                  showSearch
+                  className="form-select mb-3-cat"
+                  onChange={(value) => {
+                    setCategory(value);
+                  }}
+                >
+                  {categories?.map((c) => (
+                    <Option key={c._id} value={c._id}>
+                      {c.name}
+                    </Option>
+                  ))}
+                </Select>
+              </div>
+              <div className="mb-3 photoupl">
                 <label className="btn btn-outline-secondary col-md-12">
                   {photo ? photo.name : "Upload Photo"}
                   <input
@@ -97,7 +102,19 @@ const CreateProduct = () => {
                     accept="image/*"
                     onChange={(e) => setPhoto(e.target.files[0])}
                     hidden
+                    
+
                   />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="30"
+                    fill="currentColor"
+                    class="bi bi-cloud-plus-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm.5 4v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z" />
+                  </svg>
                 </label>
               </div>
               <div className="mb-3">
@@ -126,7 +143,7 @@ const CreateProduct = () => {
                   type="text"
                   value={description}
                   placeholder="write a description"
-                  className="form-control"
+                  className="form-control tesxteria-cat"
                   onChange={(e) => setDescription(e.target.value)}
                 />
               </div>

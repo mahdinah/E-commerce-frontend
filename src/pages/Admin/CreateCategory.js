@@ -4,13 +4,17 @@ import AdminMenu from "./../../components/Layout/AdminMenu";
 import toast from "react-hot-toast";
 import axios from "axios";
 import CategoryForm from "../../components/Form/CategoryForm";
+import "../../styles/Admin-User-panel.css"
 import { Modal } from "antd";
+import Swal from "sweetalert2";
 const CreateCategory = () => {
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState(null);
   const [updatedName, setUpdatedName] = useState("");
+  const [value,setValue]=useState("");
+
   //handle Form
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +34,7 @@ const CreateCategory = () => {
     }
   };
 
+
   //get all cat
   const getAllCategory = async () => {
     try {
@@ -46,6 +51,10 @@ const CreateCategory = () => {
   useEffect(() => {
     getAllCategory();
   }, []);
+
+  useEffect(() => {
+    getAllCategory();
+  }, [categories]);
 
   //update category
   const handleUpdate = async (e) => {
@@ -70,29 +79,48 @@ const CreateCategory = () => {
   };
   //delete category
   const handleDelete = async (pId) => {
+    const result = await Swal.fire({
+      icon: 'warning',
+      title: `Are you sure you want to delete This product?`,
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel',
+      reverseButtons: true
+    });
     try {
-      const { data } = await axios.delete(
-        `/api/v1/category/delete-category/${pId}`
-      );
-      if (data.success) {
-        toast.success(`category is deleted`);
+      if (result.isConfirmed){
+    const { data } = await axios.delete(
+      `/api/v1/category/delete-category/${pId}`
+    );  
+    if (data.success) {
+      toast.success(`category is deleted`);
 
-        getAllCategory();
-      } else {
-        toast.error(data.message);
-      }
-    } catch (error) {
-      toast.error("Somtihing went wrong");
+      getAllCategory();
+    } else {
+      toast.error(data.message);
     }
-  };
+  }} catch (error) {
+    toast.error("Somtihing went wrong");
+  }
+};
+// //check if input empty
+// const submitForm = (e) => {
+//   e.preventDefault(); // prevent default form submission behavior
+//   if (value.trim() !== "") { // check if input value is not empty
+//     handleSubmit(); // call the provided handleSubmit function
+//     setValue(""); // clear the input field after submission
+
+// //   }
+
+// };
   return (
     <Layout title={"Dashboard - Create Category"}>
       <div className="container-fluid m-3 p-3 dashboard">
-        <div className="row">
+        <div className="admin-dash">
           <div className="col-md-3">
             <AdminMenu />
           </div>
-          <div className="col-md-9">
+          <div className="col-category-pan">
             <h1>Manage Category</h1>
             <div className="p-3 w-50">
               <CategoryForm
@@ -101,22 +129,23 @@ const CreateCategory = () => {
                 setValue={setName}
               />
             </div>
-            <div className="w-75">
-              <table className="table">
-                <thead>
+            <div className="cat-table">
+              <table className="table-category">
+                {/* <thead>
                   <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Actions</th>
                   </tr>
-                </thead>
-                <tbody>
+                </thead> */}
+                <tbody className="tbodycat">
                   {categories?.map((c) => (
                     <>
-                      <tr>
-                        <td key={c._id}>{c.name}</td>
-                        <td>
+                      <div className="cat-editor">
+                      <div className="cat-editor-info">
+                        <div className="catnameinfo" key={c._id}>{c.name}</div>
+                        <div className="catbtnedrm">
                           <button
-                            className="btn btn-primary ms-2"
+                            className="btn-ms-2"
                             onClick={() => {
                               setVisible(true);
                               setUpdatedName(c.name);
@@ -126,15 +155,16 @@ const CreateCategory = () => {
                             Edit
                           </button>
                           <button
-                            className="btn btn-danger ms-2"
+                            className="btn-ms-3"
                             onClick={() => {
                               handleDelete(c._id);
                             }}
                           >
                             Delete
                           </button>
-                        </td>
-                      </tr>
+                        </div>
+                        </div>
+                      </div>
                     </>
                   ))}
                 </tbody>

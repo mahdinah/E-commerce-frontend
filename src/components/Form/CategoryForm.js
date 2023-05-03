@@ -1,21 +1,26 @@
 import React from "react";
+import "../../styles/Admin-User-panel.css"
 
 const CategoryForm = ({ handleSubmit, value, setValue }) => {
+  
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
+      <form className="catcreate" onSubmit={handleSubmit}>
+        <div className="catcreate-input">
           <input
+        
             type="text"
             className="form-control"
             placeholder="Enter new category"
             value={value}
             onChange={(e) => setValue(e.target.value)}
+           
+            required
           />
         </div>
 
-        <button type="submit" className="btn btn-primary">
-          Submit
+        <button type="submit" className="submit-cat" >
+          Add
         </button>
       </form>
     </>

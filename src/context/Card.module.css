@@ -1,0 +1,39 @@
+.cardds {
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  width: 400px;
+margin-top: 100px;
+  margin-bottom: 20px;
+  padding: 0rem 2rem 2rem 2rem;
+border-radius: 5px;
+padding-bottom: 1px;
+  }
+  .css-1fzpoyk img{
+    object-fit: cover !important;
+
+    background-position: 50% 50%;  }
+  
+  .cardds img {   
+    object-fit: cover !important;
+    width: 350px;
+    height: 350px;
+    border-radius: 20px;
+margin-left: -7px;
+margin-top: -50px;
+
+    
+  }
+
+  .cardds h2 {
+    margin: 0;
+    margin-top: 1rem;
+  }
+  
+  .cardds p {
+    margin: 0;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+

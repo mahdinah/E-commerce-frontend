@@ -12,8 +12,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import axios from "axios";
-import { useRef } from "react";
-
+import Headervid from "../../Images/fhd.webm"
 //header all elements
 const Header = () => {
   //******************************   register form  ******************************
@@ -174,12 +173,24 @@ const Header = () => {
     }
   };
   //******************************   forgotpassword  ******************************
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
+
+  function handleMenuItemClick() {
+    setIsMenuVisible(false);
+    scrollToBottom();
+  }
 
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+      
+      <video className="fullscreens" autoPlay loop muted>
+                     <source src={Headervid} type="video/webm" />
+                     </video>   
         <div className="container-fluid">
+       
           <div className="navinfo">
+          
             <ul className="socialicos">
               <a href="https://www.facebook.com/">
                 <li>
@@ -446,7 +457,7 @@ const Header = () => {
               </div>{" "}
               <li>
                 {" "}
-                <NavLink to="/cart" className="nav-link">
+                <NavLink to="/cart" className="nav-link" onClick={scrollToBottom}>
                   <Badge
                     className="subco"
                     count={cart?.length}
@@ -515,18 +526,21 @@ const Header = () => {
                       }}
                       className="menu-center"
                     >
-                      <MenuItem className="dropdownacc">
+                      <MenuItem className="dropdownacc" >
                         <div className="dropdownacc">
-                          <ul className="dropdown-menu">
+                          <ul className="dropdown-menu" >
                             <li>
-                              <NavLink
+                              <Link 
                                 to={`/dashboard/${
                                   auth?.user?.role === 1 ? "admin" : "user"
                                 }`}
                                 className="dropdown-item"
+                                onClick={scrollToBottom}
+
                               >
+                      
                                 {auth?.user?.name}
-                              </NavLink>
+                              </Link>
                             </li>
                             <li>
                               <NavLink
@@ -565,7 +579,7 @@ const Header = () => {
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink to="/" className="nav-link ">
+                  <NavLink to="/" className="nav-link" onClick={scrollToBottom}>
                     NEW{" "}
                   </NavLink>
                 </li>
@@ -659,12 +673,15 @@ const Header = () => {
                       >
                         {categories?.map((c) => (
                           <li key={c._id}>
-                            <Link
+                            <Link  
                               className="dropdown-item"
                               to={`/category/${c.slug}`}
+                              onClick={scrollToBottom}
+                              
                               style={{ display: "block", padding: "5px" }}
                             >
                               {c.name}
+                             
                             </Link>
                           </li>
                         ))}
@@ -677,6 +694,7 @@ const Header = () => {
               </ul>
             </div>
           </div>
+
         </div>
         <div className="Collection">
           New Collection
@@ -688,7 +706,11 @@ const Header = () => {
           <button className="explore" onClick={scrollToBottom}>
             Explore More
           </button>
+          
         </div>
+
+      
+       
       </nav>
     </>
   );
