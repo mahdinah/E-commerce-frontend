@@ -70,20 +70,7 @@ const ProductDetails = () => {
               <h6>Category : {product?.category?.name}</h6>
             </div>
           </div>
-          <div>
-            {relatedProducts?.map((p) => (
-              <button
-                className="addbtncard outdivcard"
-                onClick={() => {
-                  setCart([...cart, p]);
-                  localStorage.setItem("cart", JSON.stringify([...cart, p]));
-                  toast.success("Item Added to cart");
-                }}
-              >
-                ADD TO CART
-              </button>
-            ))}
-          </div>
+         
         </div>
         <hr />
         <div className="productitem">
