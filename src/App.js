@@ -1,5 +1,5 @@
 import "./App.css";
-import ContactUs from "./components/contact copy";
+import ContactUs from "./components/contact";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
