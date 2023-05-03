@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { Select } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 const { Option } = Select;
 
 const UpdateProduct = () => {
@@ -78,6 +79,7 @@ const UpdateProduct = () => {
         toast.error(data?.message);
       } else {
         toast.success("Product Updated Successfully");
+        getAllCategory();
         navigate("/dashboard/admin/products");
       }
     } catch (error) {
@@ -86,21 +88,28 @@ const UpdateProduct = () => {
     }
   };
 
-  //delete a product
-  const handleDelete = async () => {
-    try {
-      let answer = window.prompt("Are You Sure want to delete this product ? ");
-      if (!answer) return;
-      const { data } = await axios.delete(
-        `/api/v1/product/delete-product/${id}`
-      );
-      toast.success("Product DEleted Succfully");
-      navigate("/dashboard/admin/products");
-    } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong");
-    }
-  };
+//delete a product
+const handleDelete = async () => {
+  const result = await Swal.fire({
+    icon: 'warning',
+    title: 'Are you sure you want to delete This product?',
+    showCancelButton: true,
+    confirmButtonText: 'Delete',
+    cancelButtonText: 'Cancel',
+    reverseButtons: true
+  });
+  try {
+    if (result.isConfirmed){
+    const { data } = await axios.delete(
+      `/api/v1/product/delete-product/${id}`
+    );
+    toast.success("Product DEleted Succfully");
+    navigate("/dashboard/admin/products");
+  } }catch (error) {
+    console.log(error);
+    toast.error("Something went wrong");
+  }
+};
   return (
     <Layout title={"Dashboard - Create Product"}>
       <div className="container-fluid m-3 p-3">

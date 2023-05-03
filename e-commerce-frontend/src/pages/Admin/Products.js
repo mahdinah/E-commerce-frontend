@@ -24,6 +24,12 @@ const Products = () => {
   useEffect(() => {
     getAllProducts();
   }, []);
+
+useEffect(()=>{
+  getAllProducts();
+},[products]);
+
+  
   return (
     <Layout>
       <div className="sidebar-container-pro">

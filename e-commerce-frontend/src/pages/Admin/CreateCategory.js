@@ -3,6 +3,7 @@ import Layout from "./../../components/Layout/Layout";
 import AdminMenu from "./../../components/Layout/AdminMenu";
 import toast from "react-hot-toast";
 import axios from "axios";
+import Swal from "sweetalert2";
 import CategoryForm from "../../components/Form/CategoryForm";
 import "../../styles/Admin-User-panel.css"
 import { Modal } from "antd";
@@ -74,21 +75,30 @@ const CreateCategory = () => {
   };
   //delete category
   const handleDelete = async (pId) => {
+    const result = await Swal.fire({
+      icon: 'warning',
+      title: "Are you sure you want to delete This product?",
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel',
+      reverseButtons: true
+    });
     try {
-      const { data } = await axios.delete(
-        `/api/v1/category/delete-category/${pId}`
-      );  
-      if (data.success) {
-        toast.success(`category is deleted`);
+      if (result.isConfirmed){
+    const { data } = await axios.delete(
+      `/api/v1/category/delete-category/${pId}`
+    );
+    if (data.success) {
+      toast.success("category is deleted");
 
-        getAllCategory();
-      } else {
-        toast.error(data.message);
-      }
-    } catch (error) {
-      toast.error("Somtihing went wrong");
+      getAllCategory();
+    } else {
+      toast.error(data.message);
     }
-  };
+  }} catch (error) {
+    toast.error("Somtihing went wrong");
+  }
+};
 // //check if input empty
 // const submitForm = (e) => {
 //   e.preventDefault(); // prevent default form submission behavior
