@@ -92,7 +92,7 @@ gap:10px;
   display: flex;
   flex-flow: wrap;
 font-size: 22px;
-gap: 50%;
+gap: 40%;
 align-items: center;
 }
 
@@ -144,11 +144,11 @@ padding-bottom: 30px;
   align-items: center;
 gap: 220px;
 margin-left: 75px;
-  
-}.addresupdate{
+}
+/* }.addresupdate{
   margin-top: 230px;
 
-}
+} */
 .quantity-buttons{
   border: #ec9c8c 1px solid;
 background-color: transparent;
